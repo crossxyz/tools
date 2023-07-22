@@ -1,9 +1,8 @@
 FROM node:latest
-ADD web.zip /web.zip
-RUN unzip web.zip
-RUN cd web &&\
-    npm install &&\
-    npm install pm2 -g
+COPY web.zip /root/
+RUN unzip web.zip &&\
+    rm web.zip &&\
+    npm install
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 EXPOSE 56559
