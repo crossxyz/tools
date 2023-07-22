@@ -1,5 +1,5 @@
 FROM node:latest
-COPY web.zip /usr/web/
+ADD web.zip /web.zip
 RUN unzip web.zip &&\
     rm web.zip &&\
     npm install
