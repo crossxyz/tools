@@ -1,1 +1,22 @@
-echo "
+echo "#!/sbin/openrc-run
+
+command="/usr/bin/web"
+command_args="-p 8080 -c test:test bash"
+command_background="yes"
+pidfile="/run/web.pid"
+
+depend() {
+    need net
+}" >> /etc/init.d/web
+echo "#!/sbin/openrc-run
+
+command="/usr/bin/cloudflared"
+command_args="tunnel --no-autoupdate run --token eyJhIjoiY2VkMGM4MDU1YjBiMGVjYjFkOGI0NGFmYTNmZWMzMGYiLCJ0IjoiZDZjYzAzYjMtMDQyOS00NjI2LWE3YWUtOGQzMWE2OTY2MDRkIiwicyI6Ik0yWXhZekkzTm1JdE0yWTJaaTAwWXpJNUxUZ3lZakl0TjJZM01qaGtORFppWldZMSJ9"
+command_background="yes"
+pidfile="/run/cloudflared.pid"
+
+depend() {
+    need net
+}" >> /etc/init.d/cloudflared
+
+
